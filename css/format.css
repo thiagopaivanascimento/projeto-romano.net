@@ -1,0 +1,126 @@
+ body {
+	background-image: url(../imagens/fundo_imagem.jpg);
+	background-repeat: repeat-x;
+	background-position: top left;
+	background-attachment: fixed;
+	font-family:calibri;
+	font-size: 12px;
+ 
+}
+
+#geral{
+	width: 770px;
+	height: 800px;
+	margin-top: 1px;
+}
+
+#navegacao{
+	width: 770px;
+	height: 50px;
+	clear:both;
+	background-image: url(../imagens/barra_fundo.jpg);
+}
+
+#banner{
+	width: 770px;
+	height: 200px;
+	background-image: url(../imagens/banner_topo.jpg); 
+	clear: both;
+}
+
+#conteudo{
+	width: 770px;
+	height: 530px;
+	background-color: #FFFFFF;
+	clear:both;
+	padding-top: 10px; 
+}
+
+#rodape{
+	width: 770px;
+	height: 30px;
+	clear: both;
+	float: inherit;
+	background-image: url(../imagens/rodape.jpg);
+	text-align: right; 
+	font-family: calibri;
+	font-size: 12px;
+	color: #FFFFFF;
+	padding-top: 5px;
+	padding-right: 5px; 
+}
+
+.box{
+	width: 700px;
+	padding-top: 10px;
+	display: block;
+}	
+
+.box2{
+	width: 550px;
+	padding-top: 10px;
+	display: block;
+}	
+
+.titulo{
+	font-family: calibri;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FF6464; 
+}
+
+.botao{
+	background: url(../imagens/botao_color2.jpg);
+	width: 80px;
+	height: 25px;
+	color: white;
+	font: calibri;
+	border: 1px outset #FF6464;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.mensagem{
+	color: red;
+	font-family: calibri;
+	font-size: 16px;
+	font-weight: bold;
+}	
+
+a {
+	text-decoration: none;
+	color: #000000;
+	
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #000000;
+	
+}
+
+.corpo_tabela {
+	border: #FF6464 solid 1px;
+}	
+
+.topo_tabela {
+	font-size:14px;
+	font-family: calibri;
+	font-weight:bold;
+	color:white;
+	background-image: url(../imagens/barra_tabela.jpg);
+	text-align:center;
+	border: #FFFFFF solid 1px;
+}
+
+.detalhe_tabela {
+	font-size:12px;
+	font-family: calibri;
+	color:black;
+	border: #FF6464 solid 1px;
+	text-align: center;
+}
+
+hr {
+	color: #FF6464;
+}

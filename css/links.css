@@ -1,0 +1,60 @@
+img{ 
+	border: 0pt; 
+}
+
+#vista_toolbar {
+float:left;
+font:normal 12px 'Trebuchet MS','Arial';
+margin:0;
+padding:0;
+}
+
+#vista_toolbar ul {
+background-image: url(../imagens/barra_fundo.jpg);
+background-repeat:repeat-x;
+float:left;
+line-height:50px;
+list-style:none;
+margin:0;
+padding:0 10px 0px 10px;
+width:751px;
+font-weight: bolder;
+}
+
+#vista_toolbar li {
+display:inline;
+padding:0;
+}
+
+#vista_toolbar a {
+color:#FFF; /* need because it will use default link color */
+float:left;
+padding:0 3px 0 3px; /* left 3 px because of left.png image */ 
+text-decoration:none;
+}
+
+#vista_toolbar a span {
+display:block;
+float:none;
+padding:0 5px 0 7px;
+}
+
+#vista_toolbar a span img {
+border:none;
+margin: 15px 5px 0 0;
+}
+
+/* show picture when mouse over link */
+#vista_toolbar a:hover{
+/*background-image: url(../imagens/botao_color2.jpg) repeat left center;*/
+text-decoration: underline;
+}
+
+#vista_toolbar a:hover span {
+/*background: url(../imagens/botao_color2.jpg) repeat right center;*/
+text-decoration: underline;
+}
+
+#vista_toolbar a.right {
+float:left; /* for help button - just add class "right" ->  <a class="right"... */
+}
