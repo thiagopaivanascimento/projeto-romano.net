@@ -1,6 +1,7 @@
 <?php
 include 'conexao/conexao.php';
 include 'config/valida.php';
+ini_set ("default_charset", "UTF-8");
 ?>
 <html>
  <head>
@@ -17,21 +18,21 @@ include 'config/valida.php';
 	   </div>
 	   <div id="vista_toolbar">
 	   <ul class="menubar">
-	   <li><a class="left" href="index.php"><span><img align="left" src="imagens/icone_home.gif" alt="Página Inicial" />Home</span></a></li>
+	   <li><a class="left" href="index.php"><span><img align="left" src="imagens/icone_home.gif" alt="Pï¿½gina Inicial" />Home</span></a></li>
 	   <li><a class="left" href="cliente_detalhe.php"><span><img align="left" src="imagens/icone_cli.gif" alt="Clintes Detalhes" />Clientes</span></a></li>
-	   <li><a class="left" href="funcionarios_detalhes.php"><span><img align="left" src="imagens/icone_func.gif" alt="Funcionários Detalhes" />Funcionários</span></a></li>
+	   <li><a class="left" href="funcionarios_detalhes.php"><span><img align="left" src="imagens/icone_func.gif" alt="Funcionï¿½rios Detalhes" />Funcionï¿½rios</span></a></li>
 	   <li><a class="left" href="pizzas_detalhes.php"><span><img align="left" src="imagens/icone_pizza.gif" alt="Cadastro de Pizzas" />Pizzas</span></a></li>
 	   <li><a class="left" href="pedidos.php"><span><img align="left" src="imagens/icone_ped.gif" alt="Gerenciamento de Pedidos" />Pedidos</span></a></li>
-	   <li><a class="left" href="precos.php"><span><img align="left" src="imagens/icone_preco.gif" alt="Preços de Pizzas" />Preços</span></a></li>
-	   <li><a class="left" href="relatorios.php"><span><img align="left" src="imagens/icone_rel.gif" alt="Visualizar Relatórios" />Relatórios</span></a></li>
-	   <li><a class="left" href="usuarios.php"><span><img align="left" src="imagens/icone_usu.gif" alt="Usários Detalhes" />Usuários</span></a></li>
-	   <li><a class="left" href="logout.php" onClick="return confirm('Você deseja realmente sair?')"><span><img align="left" src="imagens/icone_sair.gif" alt="Logout" />Sair</span></a></li>
+	   <li><a class="left" href="precos.php"><span><img align="left" src="imagens/icone_preco.gif" alt="Preï¿½os de Pizzas" />Preï¿½os</span></a></li>
+	   <li><a class="left" href="relatorios.php"><span><img align="left" src="imagens/icone_rel.gif" alt="Visualizar Relatï¿½rios" />Relatï¿½rios</span></a></li>
+	   <li><a class="left" href="usuarios.php"><span><img align="left" src="imagens/icone_usu.gif" alt="Usï¿½rios Detalhes" />Usuï¿½rios</span></a></li>
+	   <li><a class="left" href="logout.php" onClick="return confirm('Vocï¿½ deseja realmente sair?')"><span><img align="left" src="imagens/icone_sair.gif" alt="Logout" />Sair</span></a></li>
       </ul>
  	  </div>
 	   <div id="conteudo">
 	    <div align="center">
 		   <fieldset class="box">
-		   <legend class="titulo">Tabela de Preços - Pizzas Registradas</legend>
+		   <legend class="titulo">Tabela de Preï¿½os - Pizzas Registradas</legend>
 		   <p>
 		     <?php
 	 	 include 'conexao/conexao.php';
@@ -39,17 +40,17 @@ include 'config/valida.php';
   		$sql = "SELECT * from pizzas order by sabor";
   		$res = pg_query($conexao, $sql); 
 		if (pg_num_rows($res) <= 0){
-		  echo "<span class='mensagem'>Não há registro!</span>";
+		  echo "<span class='mensagem'>Nï¿½o hï¿½ registro!</span>";
 		   }else{
-	  //Construção da consulta
+	  //Construï¿½ï¿½o da consulta
         	echo "<table width='500' class='corpo_tabela' cellspacing='0' align='center'>";
 			echo "<tr>";
 			echo "<td class='topo_tabela'>Sabores</td>"; 
-	    	echo "<td class='topo_tabela'>Média (32cm)</td>";
-			echo "<td class='topo_tabela'>Família (37cm)</td>";
+	    	echo "<td class='topo_tabela'>Mï¿½dia (32cm)</td>";
+			echo "<td class='topo_tabela'>Famï¿½lia (37cm)</td>";
 			echo "<td class='topo_tabela'>Gigante (41cm)</td>";
 			echo "</tr>";
-		 //Construção de um loop
+		 //Construï¿½ï¿½o de um loop
 		 for ($i=0; $i < pg_num_rows($res); $i++ ) {
 		  $sabor = pg_fetch_result($res, $i, "sabor");
 		  $preco_med = pg_fetch_result($res, $i, "media");
@@ -65,7 +66,7 @@ include 'config/valida.php';
 			 echo "</tr>";
 			 
 		 echo "</table>";
-	
+		 echo "<br />";	
 	 } 
 	
 	pg_close($conexao);
@@ -76,7 +77,7 @@ include 'config/valida.php';
 		</div>
 	   </div>
 	    <div id="rodape">
-	    Copyright© Romano.NET - Pizzaria online. Todos os direitos reservados.
+	    Copyrightï¿½ Romano.NET - Pizzaria online. Todos os direitos reservados.
 	   </div>
 	  </div>
  	</div>

@@ -2,7 +2,7 @@
 include 'conexao/conexao.php';
 include 'config/valida.php';
 
-ini_set ("default_charset", "ISO-8859-1");
+ini_set ("default_charset", "UTF-8");
 
 ?>
 <html>
@@ -12,20 +12,6 @@ ini_set ("default_charset", "ISO-8859-1");
   <link href="css/format.css" type="text/css" rel="stylesheet" />
   <link href="css/links.css" type="text/css" media="all" rel="stylesheet" />
   <script type="text/javascript" src="scripts/script_pedido.js"></script>
-  
-<style type="text/css">
-
-.box_cli{
-	width: 200px;
-	height: 350px;
-}
-
-.box_pizza{
-	width: 450px;
-	height: 375px;
-}
-
-</style>  
 
 </head>
  <body alink="#FFFFFF" vlink="#FFFFFF">
@@ -35,28 +21,28 @@ ini_set ("default_charset", "ISO-8859-1");
 	   </div>
 	   <div id="vista_toolbar">
 	   <ul class="menubar">
-	   <li><a class="left" href="index.php"><span><img align="left" src="imagens/icone_home.gif" alt="P·gina Inicial" />Home</span></a></li>
+	   <li><a class="left" href="index.php"><span><img align="left" src="imagens/icone_home.gif" alt="P√°gina Inicial" />Home</span></a></li>
 	   <li><a class="left" href="cliente_detalhe.php"><span><img align="left" src="imagens/icone_cli.gif" alt="Clintes Detalhes" />Clientes</span></a></li>
-	   <li><a class="left" href="funcionarios_detalhes.php"><span><img align="left" src="imagens/icone_func.gif" alt="Funcion·rios Detalhes" />Funcion·rios</span></a></li>
+	   <li><a class="left" href="funcionarios_detalhes.php"><span><img align="left" src="imagens/icone_func.gif" alt="Funcion√°rios Detalhes" />Funcion√°rios</span></a></li>
 	   <li><a class="left" href="pizzas_detalhes.php"><span><img align="left" src="imagens/icone_pizza.gif" alt="Cadastro de Pizzas" />Pizzas</span></a></li>
 	   <li><a class="left" href="pedidos.php"><span><img align="left" src="imagens/icone_ped.gif" alt="Gerenciamento de Pedidos" />Pedidos</a></span></li>
-	   <li><a class="left" href="precos.php"><span><img align="left" src="imagens/icone_preco.gif" alt="PreÁos de Pizzas" />PreÁos</a></span></li>
-	   <li><a class="left" href="relatorios.php"><span><img align="left" src="imagens/icone_rel.gif" alt="Visualizar RelatÛrios" />RelatÛrios</span></a></li>
-	   <li><a class="left" href="usuarios.php"><span><img align="left" src="imagens/icone_usu.gif" alt="Us·rios Detalhes" />Usu·rios</span></a></li>
-	   <li><a class="left" href="logout.php" onClick="return confirm('VocÍ deseja realmente sair?')"><span><img align="left" src="imagens/icone_sair.gif" alt="Logout" />Sair</span></a></li>
+	   <li><a class="left" href="precos.php"><span><img align="left" src="imagens/icone_preco.gif" alt="Pre√ßos de Pizzas" />Pre√ßos</a></span></li>
+	   <li><a class="left" href="relatorios.php"><span><img align="left" src="imagens/icone_rel.gif" alt="Visualizar Relat√≥rios" />Relat√≥rios</span></a></li>
+	   <li><a class="left" href="usuarios.php"><span><img align="left" src="imagens/icone_usu.gif" alt="Usu√°rios Detalhes" />Usu√°rios</span></a></li>
+	   <li><a class="left" href="logout.php" onClick="return confirm('Voc√™ deseja realmente sair?')"><span><img align="left" src="imagens/icone_sair.gif" alt="Logout" />Sair</span></a></li>
       </ul>
  	  </div>
 	   <div id="conteudo">
 	  <div align="center">
 	  <?php
 
-//Conex„o ao Banco de Dados
+//Conex√£o ao Banco de Dados
 include 'conexao/conexao.php';
 
-//OperaÁ„o de Pesquisa
-$Pesquisar = isset($_GET['Pesquisar']);
-if ( $Pesquisar == 'Pesquisar' ) { 
-  $txtTel = $_GET['txtTel'];
+//Opera√ß√£o de Pesquisa
+$Pesquisar = isset($_POST['Pesquisar']);
+if ( $Pesquisar == 'Pesquisar' ) {
+	$txtTel = $_POST['txtTel'];
    if (empty($txtTel)){
    	echo "<script> alert('- O TELEFONE deve ser informado.') </script>";
 	}
@@ -64,10 +50,10 @@ if ( $Pesquisar == 'Pesquisar' ) {
   $sql = "SELECT * from clientes where telefone='$txtTel'";
   $res = pg_query($conexao, $sql);
   if (pg_num_rows($res) <= 0) {
-     echo "<script> alert('Cliente n„o cadastrado') </script>";
+     echo "<script> alert('Cliente n√£o cadastrado') </script>";
   }
   else {
-    $txtTel = pg_fetch_result($res,0,'telefone');
+	$txtTel = pg_fetch_result($res,0,'telefone');
 	$txtCli = pg_fetch_result($res,0,'cliente');
     $txtCPF = pg_fetch_result($res,0,'cpf');
 	$txtEnd = pg_fetch_result($res,0,'endereco');
@@ -76,11 +62,11 @@ if ( $Pesquisar == 'Pesquisar' ) {
   }
 }
 
-//OperaÁ„o do ComboBox - Sabores da Pizzas
+//Opera√ß√£o do ComboBox - Sabores da Pizzas
 
- $Buscar = isset($_GET['Buscar']);
+ $Buscar = isset($_POST['Buscar']);
 if ( $Buscar == 'Buscar' ) {
-  $sabor = $_GET['sabor'];
+  $sabor = $_POST['sabor'];
   if (empty($sabor)){
    	echo "<script> alert('- Por favor, informe o SABOR da PIZZA.') </script>";
 	}
@@ -88,10 +74,10 @@ if ( $Buscar == 'Buscar' ) {
   $sql = "SELECT * from pizzas where sabor='$sabor'";
   $res = pg_query($conexao, $sql);
   if (pg_num_rows($res) <= 0) {
-     echo "<script> alert('Esta PIZZA n„o È cadastrada') </script>";
+     echo "<script> alert('Esta PIZZA n√£o est√° cadastrada') </script>";
   }
   else {
-    $ing  = pg_fetch_result($res,0,'ingrediente');
+    $ing       = pg_fetch_result($res,0,'ingrediente');
     $preco_med = pg_fetch_result($res,0,'media');
     $preco_fam = pg_fetch_result($res,0,'familia');
 	$preco_gig = pg_fetch_result($res,0,'gigante');
@@ -99,22 +85,25 @@ if ( $Buscar == 'Buscar' ) {
  }
 }
 
-//OperaÁ„o de Inclus„o de Pedido
+//Opera√ß√£o de Inclus√£o de Pedido
 
-$Salvar = isset($_GET["Salvar"]);
+$Salvar = isset($_POST["Salvar"]);
  if ( $Salvar == 'Salvar' ){
-     $txtdata = isset($_GET["txtdata"]);
-	 $txtCli = $_GET["txtCli"];
-	 $txtTel = $_GET["txtTel"]; 
-	 $txtCPF = $_GET["txtCPF"]; 
-	 $txtEnd = $_GET["txtEnd"]; 
-	 $txtBai = $_GET["txtBai"]; 
-	 $sabor = $_GET["sabor"]; 
-	 $ing = $_GET["ing"]; 
-	 $preco_med = isset($_GET["preco_med"]); 
-	 $preco_fam = isset($_GET["preco_fam"]); 
-	 $preco_gig = isset($_GET["preco_gig"]); 
-	 $refri = $_GET["refri"]; 
+     //$txtdata = $_POST["txtdata"];
+	 $txtCli = $_POST["txtCli"];
+	 $txtTel = $_POST["txtTel"]; 
+	 $txtCPF = $_POST["txtCPF"]; 
+	 $txtEnd = $_POST["txtEnd"]; 
+	 $txtBai = $_POST["txtBai"]; 
+	 $sabor = $_POST["sabor"]; 
+	 $ing = $_POST["ing"]; 
+	 $preco_med = isset($_POST["preco_med"]); 
+	 $preco_fam = isset($_POST["preco_fam"]); 
+	 $preco_gig = isset($_POST["preco_gig"]);
+	 $tamanho_preco = isset($_POST['tamanho_preco']);
+	 //$tam_preco = array($preco_med, $preco_fam,$preco_gig);
+	 //var_dump($tam_preco); 
+	 $refri = $_POST["refri"]; 
 	 if (empty($txtTel)){
 	 echo "<script> alert('- Por favor, informe o TELEFONE do CLIENTE.') </script>";
 	 }
@@ -128,7 +117,7 @@ $Salvar = isset($_GET["Salvar"]);
 	 echo "<script> alert('- Por favor, informe o SABOR da PIZZA.') </script>"; 	
 	 }
 	 else if (empty($txtEnd)){ 
-	 echo "<script> alert('- Por favor, informe o ENDERE«O do CLIENTE.') </script>";
+	 echo "<script> alert('- Por favor, informe o ENDERE√áO do CLIENTE.') </script>";
 	 }
 	 else if (empty($txtBai)){ 
 	 echo "<script> alert('- Por favor, informe o BAIRRO do CLIENTE.') </script>";
@@ -139,7 +128,7 @@ $Salvar = isset($_GET["Salvar"]);
 	 else if (empty($ing)){ 
 	 echo "<script> alert('- Por favor, informe os INGREDIENTES da PIZZA.') </script>";
 	 }
-	 else if (empty($tam_preco)){ 
+	 else if ($tamanho_preco == ""){ 
 	 echo "<script> alert('- Por favor, informe o TAMANHO da PIZZA.') </script>";
 	 }
 	 else if (empty($refri)){ 
@@ -147,13 +136,13 @@ $Salvar = isset($_GET["Salvar"]);
 	 } 
 	 if (!empty($txtCPF) and !empty($txtCli) and !empty($sabor) and !empty($refri) and !empty($tam_preco)){
 	  		 $sql = "INSERT into pedidos(cliente, endereco, sabor, tamanho_preco, refri) values
-			 ('$txtCli', '$txtEnd', '$sabor', '$tam_preco', '$refri')";
+			 ('$txtCli', '$txtEnd', '$sabor', '$tamanho_preco', '$refri')";
 			 $res = pg_query($sql);
 			  if (pg_affected_rows($res)){
 				echo "<script> alert('PEDIDO cadastrado com sucesso!') </script>";
 				echo "<script language='javascript'>window.location.href='pedidos.php'</script>";
 					} else {
-					echo "<script> alert('Houveram problemas na gravaÁ„o das informaÁıes.') </script>";
+					echo "<script> alert('Houveram problemas na grava√ß√£o das informa√ß√µes.') </script>";
 				}
 			}
 		}
@@ -161,18 +150,31 @@ $Salvar = isset($_GET["Salvar"]);
 			   
   
 ?>
-	<form action="pedidos.php" method="GET" name="FormPed">
-	  <table align="center" cellpadding="2" cellspacing="2" width="200">
+    <?php
+		/*$txtTel = $_POST['txTel']) ? $_POST['txtTel'] : null;
+		$txtCPF = $_POST['txCPF']) ? $_POST['txtCPF'] : null;
+		$txtCli = $_POST['txCli']) ? $_POST['txtCli'] : null;
+		$txtEnd = $_POST['txEnd']) ? $_POST['txtEnd'] : null;
+		$txtBai = $_POST['txBai']) ? $_POST['txtBai'] : null;
+		*/
+	?>
+	<form action="pedidos.php" method="POST" name="FormPed">
+	  <table align="center" cellpadding="2" cellspacing="2">
 	   <tr>
 	    <td>
 	     <fieldset class="box_cli">
 	      <legend class="titulo">Dados do Cliente</legend>
 	        <table align="left" cellpadding="2" cellspacing="2" witdh="250">
 	         <tr>
-	          <td align="left">Telefone&nbsp;&nbsp;<input type="submit" name="Pesquisar" value="Pesquisar" class="botao"></td>
+	          <td align="left">Telefone
+			  <!--&nbsp;&nbsp;<input type="submit" name="Pesquisar" value="Pesquisar" class="botao">-->
+			  &nbsp;
+				<a href="#" onClick="window.open('../projeto-romano.net/popup_clientes.php', 'popup_clientes', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=50, LEFT=100, WIDTH=600, HEIGHT=400');">
+				<img src="imagens/icone_buscar.gif" alt="Procurar Cursos" border="0" align="absmiddle"></a>&nbsp;
+			  </td>
 	        </tr>
 	        <tr>
-	 		 <td align="left"><input type="text" size="20" name="txtTel" value="<?php echo isset($txtTel); ?>" maxlength="12" onKeyUp="mascara_telefone()"></td> 
+	 		 <td align="left"><input type="text" size="20" name="txtTel" value="<?php echo $txtTel; ?>" maxlength="12" onKeyUp="mascara_telefone()"></td> 
 	        </tr>
 	        <tr>
 	         <td align="center" colspan="3"><hr></td>
@@ -181,34 +183,34 @@ $Salvar = isset($_GET["Salvar"]);
 	         <td align="left">Nome do Cliente</td>
 	        </tr> 
 	        <tr>
-	         <td align="left"><input type="text" size="30" name="txtCli" value="<?php echo isset($txtCli); ?>" maxlength="60"></td> 	 	 
+	         <td align="left"><input type="text" size="30" name="txtCli" value="<?php echo $txtCli ?>" maxlength="60" readonly="readonly"></td> 	 	 
 	        </tr>
 	 		<tr>
 	 		 <td align="left">CPF</td>
 	 		<tr>
 	 		<tr>
-	 		 <td align="left"><input type="text" size="20" name="txtCPF" value="<?php echo isset($txtCPF); ?>" maxlength="14" onKeyUp="mascara_cpf()"></td> 
+	 		 <td align="left"><input type="text" size="20" name="txtCPF" value="<?php  echo $txtCPF; ?>" maxlength="14" onKeyUp="mascara_cpf()" readonly="readonly"></td> 
 	 		</tr>
 	 		<tr>
-	 		 <td align="left">EndereÁo de Entrega</td>
+	 		 <td align="left">Endere√ßo de Entrega</td>
 	 		<tr>
 	 		<tr>
-	 		 <td align="left"><input type="text" size="20" name="txtEnd" value="<?php echo isset($txtEnd); ?>" maxlength="60"></td> 
-	        </tr> 
+	 		 <td align="left"><input type="text" size="20" name="txtEnd" value="<?php  echo $txtEnd; ?>" maxlength="60" readonly="readonly"></td> 	        
+			</tr> 
 	 		<tr>
 	 		 <td align="left">Bairro</td>
 	 		</tr>
 	        <tr>
-	 		 <td align="left"><input type="text" size="20" name="txtBai" value="<?php echo isset($txtBai); ?>" maxlength="40"></td> 
+	 		 <td align="left"><input type="text" size="20" name="txtBai" value="<?php  echo $txtBai; ?>" maxlength="40" readonly="readonly"></td> 
 	        </tr>
      	 </table>
 	   </fieldset>
 	   <fieldset class="box_pizza">
 	    <legend class="titulo">Criar Pizza</legend>
-	     <table align="left" cellpadding="2" cellspacing="2" witdh="550">
+	     <table align="left" cellpadding="2" cellspacing="2" witdh="500">
 	      <tr>
 	       <td align="left">Informe a Pizza &nbsp;&nbsp;
-	 		<input type="text" size="20" name="sabor" value="<?php echo isset($sabor); ?>" maxlength="40">&nbsp;
+	 		<input type="text" size="20" name="sabor" value="<?php echo $sabor; ?>" maxlength="40">&nbsp;
 			<input type="submit" value="Buscar" name="Buscar" class="botao">
 	       </td>
 	      </tr>
@@ -219,31 +221,36 @@ $Salvar = isset($_GET["Salvar"]);
 	       <td align="left">(+ Adcionar / - Retirar) Ingredientes</td>
 	      </tr>
 	      <tr>
-	       <td align="left"><textarea cols="30" rows="5" name="ing"><?php echo isset($ing); ?></textarea></td> 
+	       <td align="left"><textarea cols="30" rows="5" name="ing"><?php echo $ing; ?></textarea></td> 
 	      </tr> 
 	      <tr>
 	       <td align="left">&nbsp;</td>
 	      </tr>
 	      <tr>
-	       <td align="left">Escolha o tamanho:&nbsp;<select name="tam_preco">
-	                    <option value="">Selecione o tamanho</option>   
-	 					<option value="MÈdia   |<?php echo isset($preco_med); ?>">MÈdia   | <?php echo isset($preco_med);?></option> 
-						<option value="FamÌlia |<?php echo isset($preco_fam); ?>">FamÌlia | <?php echo isset($preco_fam);?></option> 
-						<option value="Gigante |<?php echo isset($preco_gig); ?>">Gigante | <?php echo isset($preco_gig);?></option> 
-						</select>
-	       </td>
+	      <td align="left">Escolha o tamanho:&nbsp;&nbsp;
+		    <select name="tamanho_preco">
+	            <option value="">Selecione o tamanho</option>   
+	 			<option value="<?php echo $preco_med; ?>"><?php echo "M√©dia - " .$preco_med;?></option> 
+				<option value="<?php echo $preco_fam; ?>"><?php echo "Fam√≠la - ". $preco_fam;?></option> 
+				<option value="<?php echo $preco_gig; ?>"><?php echo "Gigante - ". $preco_gig;?></option> 
+		    </select>
+	 	</td>
 	     </tr>
+		 <tr>
+	       <td align="left">&nbsp; <?php //var_dump($preco_med); ?></td>
+	     </tr>
+		 
 	 <tr>
 	 <td align="left">&nbsp;</td>
 	 </tr>
 	 <tr>
-	 <td align="left">Refrigerante Gr·tis&nbsp;&nbsp; 
+	 <td align="left">Refrigerante Gr√°tis&nbsp;&nbsp; 
 	 <select name="refri">
 					<option value="">Escolha um refrigerante</option>
 					<option value="COCA-COLA">COCA-COLA</option>
 					<option value="COCA-COLA ZERO">COCA-COLA ZERO</option>
-					<option value="GUARAN¡ KUAT">GUARAN¡ KUAT</option>
-					<option value="GUARAN¡ ANTARTICA">GUARAN¡ ANTARTICA</option>
+					<option value="GUARANA KUAT">GUARAN√Å KUAT</option>
+					<option value="GUARANA ANTARTICA">GUARAN√Å ANTARTICA</option>
 					<option value="FANTA">FANTA</option>
 					<option value="FANTA UVA">FANTA UVA</option>
 					<option value="SPRITE">SPRITE</option>
@@ -252,6 +259,8 @@ $Salvar = isset($_GET["Salvar"]);
 	 </tr>
 	 </table>
 	 </fieldset>
+
+	 <!--Campo Opera√ß√µes -->
 	 <br>
 	 <fieldset class="box">
 	 <table align="center" cellpadding="2" cellspacing="2" witdh="500">
@@ -271,7 +280,7 @@ $Salvar = isset($_GET["Salvar"]);
 		</div>
 	   </div>
 	    <div id="rodape">
-	    Copyright© Romano.NET - Pizzaria online. Todos os direitos reservados.
+	    Copyright&copy; Romano.NET - Pizzaria online. Todos os direitos reservados.
 	   </div>
 	  </div>
  	</div>

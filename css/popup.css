@@ -1,0 +1,88 @@
+/* CSS Document */
+a{
+	font-family: calibri;
+	text-decoration: none;
+	color: #000000;
+}
+
+a:hover{
+	font-family: calibri;
+	text-decoration: underline;
+	color: #FF6464;
+}
+
+.mensagem{
+	color: #FF6464;
+	font-family: calibri;
+	font-size: 14px;
+}
+
+.box{
+     width: 300px;
+     border: 1px solid #FF6464;
+     display: block;
+}
+
+.box_secundario{
+	 width: 600px;
+     border: 1px solid #FF6464;
+     display: block;
+	 margin-left: 15px;
+	 font-family: calibri;
+}
+.box_principal{
+     width: 650px;
+     border: 1px solid #FF6464;
+     margin-left: 40px;
+     padding-left: 5px;
+	 display: block;
+	 font-family: calibri;
+}
+
+.botao{
+	width: 80px;
+	height: 30px;
+	background-image: url(../imagens/color_botao.jpg);
+	color: white;
+	font: calibri;
+	border: 1px outset #FF6464;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+
+.titulo{
+      font-family: calibri;
+      color: #FF6464;
+      font-size: 18px;
+	  font-weight: bold;
+}
+
+.titulo_principal{
+	font-family: calibri;
+    color: #FF6464;
+    font-size: 16px;
+}
+
+.corpo_tabela {
+	border: #FF6464 solid 1px;
+}	
+
+.topo_tabela {
+	font-size: 14px;
+	font-family: calibri;
+	font-weight:bold;
+	color: #FF6464;
+	background-image: url(../imagens/botao.jpg);
+	text-align: center;
+	border: #FF6464 solid 1px;
+}
+
+.detalhe_tabela {
+	font-size:12px;
+	font-family: calibri;
+	color:black;
+	border: #FF6464 solid 1px;
+	text-align: center;
+}
+

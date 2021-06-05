@@ -1,7 +1,7 @@
 <?php
 include 'conexao/conexao.php';
 include 'config/valida.php';
-ini_set ("default_charset", "ISO-8859-1");
+ini_set ("default_charset", "UTF-8");
 
 ?>
 <html>
@@ -20,15 +20,15 @@ ini_set ("default_charset", "ISO-8859-1");
 	   </div>
 	   <div id="vista_toolbar">
 	   <ul class="menubar">
-	   <li><a class="left" href="index.php"><span><img align="left" src="imagens/icone_home.gif" alt="P·gina Inicial" />Home</span></a></li>
+	   <li><a class="left" href="index.php"><span><img align="left" src="imagens/icone_home.gif" alt="P√°gina Inicial" />Home</span></a></li>
 	   <li><a class="left" href="cliente_detalhe.php"><span><img align="left" src="imagens/icone_cli.gif" alt="Clintes Detalhes" />Clientes</span></a></li>
-	   <li><a class="left" href="funcionarios_detalhes.php"><span><img align="left" src="imagens/icone_func.gif" alt="Funcion·rios Detalhes" />Funcion·rios</span></a></li>
+	   <li><a class="left" href="funcionarios_detalhes.php"><span><img align="left" src="imagens/icone_func.gif" alt="Funcion√°rios Detalhes" />Funcion√°rios</span></a></li>
 	   <li><a class="left" href="pizzas_detalhes.php"><span><img align="left" src="imagens/icone_pizza.gif" alt="Cadastro de Pizzas" />Pizzas</span></a></li>
 	   <li><a class="left" href="pedidos.php"><span><img align="left" src="imagens/icone_ped.gif" alt="Gerenciamento de Pedidos" />Pedidos</span></a></li>
-	   <li><a class="left" href="precos.php"><span><img align="left" src="imagens/icone_preco.gif" alt="PreÁos de Pizzas" />PreÁos</span></a></li>
-	   <li><a class="left" href="relatorios.php"><span><img align="left" src="imagens/icone_rel.gif" alt="Visualizar RelatÛrios" />RelatÛrios</span></a></li>
-	   <li><a class="left" href="usuarios.php"><span><img align="left" src="imagens/icone_usu.gif" alt="Us·rios Detalhes" />Usu·rios</span></a></li>
-	   <li><a class="left" href="logout.php" onClick="return confirm('VocÍ deseja realmente sair?')"><span><img align="left" src="imagens/icone_sair.gif" alt="Logout" />Sair</span></a></li>
+	   <li><a class="left" href="precos.php"><span><img align="left" src="imagens/icone_preco.gif" alt="Pre√ßos de Pizzas" />Pre√ßos</span></a></li>
+	   <li><a class="left" href="relatorios.php"><span><img align="left" src="imagens/icone_rel.gif" alt="Visualizar Relat√≥rios" />Relat√≥rios</span></a></li>
+	   <li><a class="left" href="usuarios.php"><span><img align="left" src="imagens/icone_usu.gif" alt="Usu√°rios Detalhes" />Usu√°rios</span></a></li>
+	   <li><a class="left" href="logout.php" onClick="return confirm('Voc√™ deseja realmente sair?')"><span><img align="left" src="imagens/icone_sair.gif" alt="Logout" />Sair</span></a></li>
       </ul>
  	  </div>
 	   <div id="conteudo">
@@ -37,7 +37,7 @@ ini_set ("default_charset", "ISO-8859-1");
 		   include 'conexao/conexao.php';
 
 
-//OperaÁ„o de Pesquisa
+//Opera√ß√£o de Pesquisa
 $Pesquisar = isset($_GET['Pesquisar']);
 if ( $Pesquisar == 'Pesquisar' ) {
   $sabor = isset($_GET['sabor']);
@@ -48,7 +48,7 @@ if ( $Pesquisar == 'Pesquisar' ) {
   $sql = "SELECT * from pizzas where sabor='$sabor'";
   $res = pg_query($conexao, $sql);
   if (pg_num_rows($res) <= 0) {
-     echo "<script> alert('Pizza n„o cadastrada') </script>";
+     echo "<script> alert('Pizza n√£o cadastrada') </script>";
   }
   else {
     $sabor = pg_fetch_result($res,0,'sabor');
@@ -60,7 +60,7 @@ if ( $Pesquisar == 'Pesquisar' ) {
  }
 }
 
-//OperaÁ„o de Inclus„o
+//Opera√ß√£o de Inclus√£o
 $incluir = isset($_GET['Incluir']);
 if ($incluir == 'Incluir') {
 
@@ -76,22 +76,22 @@ $preco_gig = $_GET['preco_gig'];
    	echo "<script> alert('- OS INGREDIENTES deve ser informado.') </script>";
 	}
 	else if (empty($preco_med)){
-   	echo "<script> alert('- O PRE«O da PIZZA M…DIA deve ser informado.') </script>";
+   	echo "<script> alert('- O PRE√áO da PIZZA M√âDIA deve ser informado.') </script>";
 	}
 	else if (empty($preco_fam)){
-   	echo "<script> alert('- O PRE«O da PIZZA FAMÕLIA deve ser informado.') </script>";
+   	echo "<script> alert('- O PRE√áO da PIZZA FAM√çLIA deve ser informado.') </script>";
 	}
 	else if (empty($preco_gig)){
-   	echo "<script> alert('- O PRE«O da PIZZA GIGANTE deve ser informado.') </script>";
+   	echo "<script> alert('- O PRE√áO da PIZZA GIGANTE deve ser informado.') </script>";
 	}
 	if ( !empty($sabor) and !empty($ing) and !empty($preco_med) and !empty($preco_fam) and !empty($preco_gig)){ 
 $sql = "SELECT * from pizzas where sabor='$sabor'";
 $res = pg_query($conexao, $sql);
 if (pg_num_rows($res) > 0 ) {
-echo "<script> alert('Esta pizza j· foi cadastrada!') </script>";
+echo "<script> alert('Esta pizza j√° foi cadastrada!') </script>";
 } else {
 $sabor = $_GET['sabor'];
-$ing = $_GET['ing'];
+$ing = htmlentities($_GET['ing']);
 $preco_med = $_GET['preco_med'];
 $preco_fam = $_GET['preco_fam'];
 $preco_gig = $_GET['preco_gig'];
@@ -102,13 +102,13 @@ if (pg_affected_rows($res)) {
 echo "<script> alert('Pizza cadastrada com sucesso!') </script>";
 echo "<script language='javascript'>window.location.href='pizza.php'</script>";
 } else {
-echo "<script> alert('Houveram problemas na gravaÁ„o das informaÁıes.') </script>";
+echo "<script> alert('Houveram problemas na grava√ß√£o das informa√ß√µes.') </script>";
 				}
 			}
 		}
 	}
 	
-//OperaÁ„o de AlteraÁ„o	
+//Opera√ß√£o de Altera√ß√£o	
 $alterar = isset($_GET['Alterar']);
 if ($alterar == 'Alterar') {
 $sabor = $_GET['sabor'];
@@ -123,20 +123,20 @@ $preco_gig = $_GET['preco_gig'];
    	echo "<script> alert('- OS INGREDIENTES deve ser informado.') </script>";
 	}
 	else if (empty($preco_med)){
-   	echo "<script> alert('- O PRE«O da PIZZA M…DIA deve ser informado.') </script>";
+   	echo "<script> alert('- O PRE√áO da PIZZA M√âDIA deve ser informado.') </script>";
 	}
 	else if (empty($preco_fam)){
-   	echo "<script> alert('- O PRE«O da PIZZA FAMÕLIA deve ser informado.') </script>";
+   	echo "<script> alert('- O PRE√áO da PIZZA FAM√çLIA deve ser informado.') </script>";
 	}
 	else if (empty($preco_gig)){
-   	echo "<script> alert('- O PRE«O da PIZZA GIGANTE deve ser informado.') </script>";
+   	echo "<script> alert('- O PRE√áO da PIZZA GIGANTE deve ser informado.') </script>";
 	}
 	if ( !empty($sabor) and !empty($ing) and !empty($preco_med) and !empty($preco_fam) and !empty($preco_gig)){
 $sabor = $_GET['sabor'];
 $sql = "select * from pizzas where sabor = '$sabor'";
 $res = pg_query($sql);
 if ( pg_num_rows($res) <= 0 ) {
-echo "<script> alert('Esta pizza n„o foi cadastrada!') </script>";
+echo "<script> alert('Esta pizza n√£o foi cadastrada!') </script>";
 } else {
 $sabor = $_GET['sabor'];
 $ing = $_GET['ing'];
@@ -147,15 +147,15 @@ $sql = "update pizzas set ingrediente='$ing', media='$preco_med', familia='$prec
 where sabor = '$sabor'";
 $res = pg_query($sql);
 if (pg_affected_rows($res)) {
-echo "<script> alert('InformaÁıes alteradas com sucesso!') </script>";
+echo "<script> alert('Informa√ß√µes alteradas com sucesso!') </script>";
 echo "<script language='javascript'>window.location.href='pizza.php'</script>";
 } else {
-echo "<script> alert('Houveram problemas na alteraÁ„o das informaÁıes') </script>";
+echo "<script> alert('Houveram problemas na altera√ß√£o das informa√ß√µes') </script>";
 				}
 			}
 		}
 	}
-// OperaÁ„o de Exclus„o
+// Opera√ß√£o de Exclus√£o
 $excluir = isset($_GET['Excluir']);
 if ($excluir == 'Excluir') {
 $sabor = $_GET['sabor'];
@@ -167,15 +167,15 @@ $sabor = $_GET['sabor'];
 $sql = "select * from pizzas where sabor = '$sabor'";
 $res = pg_query($sql);
 if ( pg_num_rows($res) <= 0 ) {
-echo "<script> alert('Esta pizza n„o foi cadastrada!') </script>";
+echo "<script> alert('Esta pizza n√£o foi cadastrada!') </script>";
 } else {
 $sql = "delete from pizzas where sabor = '$sabor'";
 $res = pg_query($sql);
 if (pg_affected_rows($res)) {
-echo "<script> alert('Pizza excluÌda com sucesso!') </script>";
+echo "<script> alert('Pizza exclu√≠da com sucesso!') </script>";
 echo "<script language='javascript'>window.location.href='pizza.php'</script>";
 } else {
-echo "<script> alert('Houveram problemas na exclus„o das informaÁıes') </script>";
+echo "<script> alert('Houveram problemas na exclus√£o das informa√ß√µes') </script>";
 }
 }
 }
@@ -196,11 +196,11 @@ echo "<script> alert('Houveram problemas na exclus„o das informaÁıes') </script>
 			 </tr> 
 			 </table>
 			<fieldset class="box2">
-			<legend class="titulo">Tamanhos - PreÁos</legend>
+			<legend class="titulo">Tamanhos - Pre√ßos</legend>
 			 <table align="center" cellpadding="5" cellspacing="5" witdh="500">
 			 <tr>
-			  <td align="center">MÈdia<br>(32cm)</td>
-			  <td align="center">FamÌlia<br>(37cm)</td>
+			  <td align="center">M√©dia<br>(32cm)</td>
+			  <td align="center">Fam√≠lia<br>(37cm)</td>
 			  <td align="center">Gigante<br>(41cm)</td>
 			 </tr> 
 			 <tr>
@@ -219,8 +219,8 @@ echo "<script> alert('Houveram problemas na exclus„o das informaÁıes') </script>
 			  <tr>
 			   <td align="left"><input type="reset" value="Limpar" class="botao"></td>
 			   <td align="left"><input type="submit" value="Incluir"  name="Incluir" class="botao" onClick="return confirm ('Deseja incluir esta pizza?')"></td>
-			   <td align="left"><input type="submit" value="Alterar"  name="Alterar"  class="botao" onClick="return confirm ('Deseja editar est· pizza?')"></td>
-			   <td align="left"><input type="submit" value="Excluir"  name="Excluir"  class="botao" onClick="return confirm ('Deseja excluir est· pizza?')"></td>
+			   <td align="left"><input type="submit" value="Alterar"  name="Alterar"  class="botao" onClick="return confirm ('Deseja editar est√° pizza?')"></td>
+			   <td align="left"><input type="submit" value="Excluir"  name="Excluir"  class="botao" onClick="return confirm ('Deseja excluir est√° pizza?')"></td>
 			   <td align="left"><input type="button" value="Consultar"  name="Consultar"  class="botao" onClick="javascript:window.location.href = 'pizza.php'"></td>
 			 </tr>
 			</table>
@@ -230,7 +230,7 @@ echo "<script> alert('Houveram problemas na exclus„o das informaÁıes') </script>
 		</div>
 	   </div>
 	    <div id="rodape">
-	    Copyright© Romano.NET - Pizzaria online. Todos os direitos reservados.
+	    Copyright&copy; Romano.NET - Pizzaria online. Todos os direitos reservados.
 	   </div>
 	  </div>
  	</div>

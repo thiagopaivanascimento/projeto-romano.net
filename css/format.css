@@ -10,8 +10,8 @@
 
 #geral{
 	width: 770px;
-	height: 800px;
-	margin-top: 1px;
+	height: auto;
+	margin-top: 0px;
 }
 
 #navegacao{
@@ -30,14 +30,14 @@
 
 #conteudo{
 	width: 770px;
-	height: 530px;
+	height: 550px;
 	background-color: #FFFFFF;
 	clear:both;
 	padding-top: 10px; 
 }
 
 #rodape{
-	width: 770px;
+	width: 765px;
 	height: 30px;
 	clear: both;
 	float: inherit;
@@ -123,4 +123,16 @@ a:hover {
 
 hr {
 	color: #FF6464;
+}
+
+
+.box_cli{
+	width: 180px;
+	height: 400px;
+	float: left;
+}
+
+.box_pizza{
+	width: 450px;
+	height: 400px;
 }
